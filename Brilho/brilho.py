@@ -2,20 +2,14 @@ import numpy as np
 import cv2 as cv
 
 
-def indicesLimiarT(img, acima, limiarT):
+def ajustarBrilho(img, limiarT, acima, brightness):  
     if acima:
         indicesVetor = img >= limiarT
     else:
         indicesVetor = img < limiarT
-    return indicesVetor
 
 
-def treshold(img, limiarT, acima, brightness):
-   
-    indicesVetor = indicesLimiarT(img, acima, limiarT)
-    
     img = img.astype(int)
-
     if brightness > 0:
       img[indicesVetor] = np.minimum(img[indicesVetor] + brightness, 255)
     else:
@@ -23,10 +17,8 @@ def treshold(img, limiarT, acima, brightness):
 
     img = img.astype(np.uint8)
     cv.imshow('Resultado',img)
-    return
     
-
-
+    
 def pegarParametros():
     img  = cv.imread('./reputation.jpg', 0)
     limiarT = int(input("Valor da Limiar T (entre 0 até 255) = "))
@@ -41,4 +33,4 @@ def pegarParametros():
 
 if __name__ ==  '__main__':
     img , limiarT, acima, brilho = pegarParametros()
-    treshold(img, limiarT, acima, brilho)
+    ajustarBrilho(img, limiarT, acima, brilho)
