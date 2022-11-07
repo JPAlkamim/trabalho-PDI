@@ -18,7 +18,7 @@ def novaImagem(img, matiz, x):
     return cv.merge([H,S,V])
 
 def pegarParametros():
-    img  = cv.imread('./midnights.jpg')
+    img  = cv.imread('./lover.jpg')
     matiz = int(input("Valor inteiro de Matiz (0 <= m < 360) = "))
     x = int(input("Valor de X = "))
     return img, matiz, x
